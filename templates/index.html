@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BigQuery Release Pulse - Live Google Cloud Release Notes</title>
+    <meta name="description" content="Stay updated with the latest BigQuery features, enhancements, changes, and deprecations in real time. Read, filter, and share Google Cloud BigQuery updates.">
+    <!-- Google Fonts Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Main Stylesheet -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <link rel="icon" type="image/png" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%252300f2fe' d='M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-2 10h-4v4h-2v-4H7v-2h4V7h2v4h4v2z'/%3E%3C/svg%3E">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Header Section -->
+        <header>
+            <div class="logo-container">
+                <div class="logo-icon">
+                    <svg viewBox="0 0 24 24" width="24" height="24">
+                        <!-- Custom database/chart logo -->
+                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 17h-2v-2h2v2zm2.07-7.75l-.9.92C13.45 12.9 13 13.5 13 15h-2v-.5c0-1.1.45-2.1 1.17-2.83l1.24-1.26c.37-.36.59-.86.59-1.41 0-1.1-.9-2-2-2s-2 .9-2 2H7c0-2.76 2.24-5 5-5s5 2.24 5 5c0 1.04-.42 1.99-1.07 2.75z"/>
+                    </svg>
+                </div>
+                <h1>BigQuery Release Pulse</h1>
+            </div>
+            <p>Real-time updates, features, deprecations, and release notes compiled directly from the official Google Cloud BigQuery RSS feed.</p>
+        </header>
+
+        <!-- Main Dashboard Actions -->
+        <main>
+            <section class="controls-bar" id="dashboard-controls">
+                <div class="status-info">
+                    <div class="status-title" id="feed-title-display">Loading Feed...</div>
+                    <div class="status-time" id="last-updated-time">Last Synced: Never</div>
+                </div>
+
+                <div class="search-container">
+                    <span class="search-icon">
+                        <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
+                        </svg>
+                    </span>
+                    <input type="text" id="search-input" class="search-input" placeholder="Search updates, keywords, dates...">
+                </div>
+
+                <div class="actions-group">
+                    <button class="btn btn-primary" id="refresh-button">
+                        <div class="spinner"></div>
+                        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" id="refresh-icon">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99" />
+                        </svg>
+                        <span id="refresh-text">Sync Notes</span>
+                    </button>
+                </div>
+            </section>
+
+            <!-- Release Notes Stream -->
+            <section class="timeline-container" id="notes-container" aria-live="polite">
+                <!-- Skeleton cards while loading will go here -->
+                <div class="empty-state" id="loading-skeleton">
+                    <svg class="animate-spin" viewBox="0 0 24 24" width="36" height="36" style="animation: spin 1s linear infinite;">
+                        <circle cx="12" cy="12" r="10" stroke="var(--accent-cyan)" stroke-width="3" fill="none" stroke-dasharray="40 20"></circle>
+                    </svg>
+                    <h3>Fetching latest updates...</h3>
+                    <p>Connecting to Google Cloud BigQuery RSS feed</p>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Twitter Composer Modal Overlay -->
+    <div class="modal-overlay" id="tweet-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="modal-title">
+                    <svg viewBox="0 0 24 24" width="20" height="20">
+                        <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                    </svg>
+                    <span>Share Update on X</span>
+                </div>
+                <button class="modal-close" id="close-modal-button" aria-label="Close modal">
+                    <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </button>
+            </div>
+            
+            <div class="tweet-box-container">
+                <textarea class="tweet-textarea" id="tweet-text" maxlength="280" placeholder="What's your take on this release?"></textarea>
+                <div class="tweet-counter" id="tweet-char-count">280 characters remaining</div>
+            </div>
+
+            <div class="modal-actions">
+                <button class="btn btn-secondary" id="cancel-tweet-button">Edit Details</button>
+                <button class="btn btn-primary" id="publish-tweet-button">
+                    <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+                        <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                    </svg>
+                    <span>Compose Tweet</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Alert notifications container -->
+    <div class="toast-container" id="toast-container"></div>
+
+    <!-- Main JavaScript Logic -->
+    <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+</body>
+</html>
