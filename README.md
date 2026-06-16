@@ -1,10 +1,10 @@
-# BigQuery Release Pulse 🚀
+# BigQuery Release Pulse 
 
 **BigQuery Release Pulse** is a premium, real-time web application that aggregates, categorizes, and displays the latest official Google Cloud BigQuery Release Notes. Built with **Python Flask** on the backend and modern vanilla **HTML5**, **CSS3**, and **JavaScript** on the frontend. It features instant filtering, dynamic categorization, and direct sharing integration with **X (Twitter)**.
 
 ---
 
-## 🎨 Visual Preview & Aesthetics
+##  Visual Preview & Aesthetics
 
 The user interface is crafted with high-end modern design principles:
 * **Dark Mode Native:** Deep Indigo/Charcoal color scheme that echoes cloud database environments.
@@ -13,7 +13,7 @@ The user interface is crafted with high-end modern design principles:
 
 ---
 
-## ⚡ Key Features
+##  Key Features
 
 * **Real-Time Feed Aggregation:** Fetches and parses the official Google Cloud BigQuery release notes XML feed dynamically.
 * **Smart Categorization:** Automatically analyses release text to flag and color-code updates under **Feature** (Purple), **Changed** (Yellow), **Deprecated** (Red), or **General Update** (Slate) badges.
@@ -23,7 +23,7 @@ The user interface is crafted with high-end modern design principles:
 
 ---
 
-## 📂 Project Structure
+##  Project Structure
 
 ```
 Esha-event-talks-app/
@@ -41,7 +41,7 @@ Esha-event-talks-app/
 
 ---
 
-## 🛠️ Setup & Running Locally
+##  Setup & Running Locally
 
 ### Prerequisites
 * Python 3.10 or higher installed.
